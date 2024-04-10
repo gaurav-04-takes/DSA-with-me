@@ -16,7 +16,21 @@ public:
     void create(int A[0], int n);
     void display();
     void insert(int index, int n);
+    void Delete(int index);
+    int length();
 };
+
+int LinkedList::length()
+{
+    Node *p = head;
+    int length = 1;
+    while (p->next != head)
+    {
+        length++;
+        p = p->next;
+    }
+    return length;
+}
 
 void LinkedList::create(int A[], int n)
 {
@@ -95,6 +109,38 @@ void LinkedList::insert(int index, int n)
     }
 }
 
+void LinkedList::Delete(int index)
+{
+    Node *p = head;
+    Node *q = head;
+    if (index == 1)
+    {
+        while (q->next != head)
+        {
+            q = p;
+            p = p->next;
+        }
+        q->next = head->next;
+        head = head->next;
+        delete p;
+    }
+    else
+    {
+        if (index > length())
+            return;
+        else
+        {
+            for (int i = 0; i < index - 1 && p->next != head; i++)
+            {
+                q = p;
+                p = p->next;
+            }
+            q->next = p->next;
+            delete p;
+        }
+    }
+}
+
 int main()
 {
     int A[] = {2, 4, 6, 8};
@@ -105,5 +151,9 @@ int main()
     cout << endl;
     l.insert(1, 1);
     l.display();
+    cout << endl;
+    l.Delete(13);
+    l.display();
+    cout << endl;
     return 0;
 }
