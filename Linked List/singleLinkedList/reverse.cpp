@@ -96,7 +96,7 @@ int main()
     int A[] = {2, 5, 63, 3};
     int n = sizeof(A) / sizeof(A[0]);
     l.create(A, n);
-    l.display(first);
+    // l.display(first);
     cout << endl;
     // l.reverseElement(first);
     // l.display(first);
